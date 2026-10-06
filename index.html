@@ -3,185 +3,295 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#000000">
-<title>Wii-Dye Portal</title>
+<title>Wii-Dye OS</title>
 <style>
-:root{--bg:#000;--card:#111;--line:#262626;--tx:#f2f2f2;--mut:#8a8a8a;--ac:#7c9cff;--c0:#f5a623;--c1:#5aa0ff;--c2:#3ddc84}
+:root{--ac:#c6f432;--cd:#14161a;--ln:#262a31;--tx:#f4f4f4;--mu:#8b909a;--rd:#ff6b6b}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,sans-serif;padding:12px 12px 80px;max-width:560px;margin:auto}
-header{display:flex;align-items:center;gap:12px;padding:8px 0 14px}
-header svg{width:56px;height:56px;flex:none}
-h1{font-size:22px;margin:0;letter-spacing:.5px}
-header small{color:var(--mut)}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px}
-label{display:block;font-size:12px;color:var(--mut);margin:10px 0 4px}
+body{margin:0 auto;background:#000;color:var(--tx);font:15px/1.35 system-ui,sans-serif;max-width:560px;padding:12px 12px 90px}
+header{display:flex;align-items:center;gap:12px;padding:6px 0 12px}
+.logo{width:52px;height:52px;background:var(--ac);border-radius:14px;padding:5px;flex:none}
+h1{font-size:22px;margin:0}h2{font-size:19px;margin:0}
+small,.mu{color:var(--mu)}.c{text-align:center}
+.card{background:var(--cd);border:1px solid var(--ln);border-radius:18px;padding:14px;margin-bottom:12px}
+.hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.tag{border:1px solid var(--ac);color:var(--ac);border-radius:10px;padding:3px 10px;font-size:13px;background:none}
+button{font:inherit;cursor:pointer;color:var(--tx)}
+.pri{width:100%;padding:13px;border:0;border-radius:24px;background:var(--ac);color:#000;font-weight:700;margin-top:8px}
+.gh{width:100%;padding:11px;border:1px solid #333;border-radius:24px;background:none;margin-top:8px}
+.bar{height:9px;background:#2a2d33;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+.tg{display:flex;justify-content:space-between;color:var(--ac);font-size:13px;margin:6px 0 8px}
+.ch{width:100%;height:80px;display:block;background:#0e1013;border-radius:10px}
+.tiles{display:flex;gap:8px;margin-top:10px}.tiles>div{flex:1}
+.tiles b{display:block;font-size:19px}
+i.up{color:var(--ac);font-style:normal;font-size:12px;margin-left:4px}i.dn{color:var(--rd);font-style:normal;font-size:12px;margin-left:4px}
+.rw{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--ln)}.rw>div:nth-child(2){flex:1;min-width:0}
+.av{width:40px;height:40px;border-radius:50%;background:#252932;color:var(--ac);display:flex;align-items:center;justify-content:center;font-weight:600;flex:none}
+.wa,.pill{border:1px solid var(--ac);color:var(--ac);border-radius:16px;padding:6px 12px;font-size:13px;text-decoration:none;background:none;white-space:nowrap}
+.pill.pd{background:#3a4a2a;border-color:#556b3a;color:#cfe6a5}
+.wk{display:flex;gap:4px;margin:6px 0 10px}.wk div{flex:1;text-align:center;padding:6px 0;border-radius:10px;font-size:13px}
+.wk div.t{background:var(--ac);color:#000;font-weight:700}.wk b{display:block;font-size:16px}.wk u{display:block;height:6px;font-size:8px;text-decoration:none;color:var(--ac)}.wk .t u{color:#000}
+.two{display:flex;gap:8px}.two>div{flex:1;background:#0e1013;border-radius:12px;padding:10px;text-align:center}
+.two b{font-size:19px}
+.lb{display:flex;justify-content:space-between;font-size:13px;margin:10px 0 4px}
+.chips{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px}
+.chip{white-space:nowrap;background:none;border:1px solid #333;color:var(--mu);border-radius:20px;padding:7px 14px}
+.chip.on{background:var(--tx);color:#000;border-color:var(--tx)}
+.dt{display:flex;gap:16px;margin:8px 0;font-size:13px;color:var(--mu)}.dt b{color:var(--tx);font-weight:600}.late b{color:var(--rd)}
+.trk{display:flex;gap:6px}.stp{flex:1;padding:9px 2px;border-radius:10px;border:1px solid #333;background:#000;color:var(--mu);font-size:13px}
+.stp.d{background:var(--ac);color:#000;border-color:var(--ac)}
+.ac{display:flex;gap:8px;margin-top:10px}.ac>*{flex:1;text-align:center;padding:8px;border:1px solid #333;border-radius:10px;background:none;font-size:13px;color:var(--tx);text-decoration:none}
+.top{display:flex;justify-content:space-between;gap:10px}.amt{text-align:right;font-weight:700;font-size:19px}.amt small{display:block;font-weight:400;font-size:12px}
+label{display:block;font-size:12px;color:var(--mu);margin:10px 0 4px}
 input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#000;color:var(--tx);font-size:16px}
 .row{display:flex;gap:10px}.row>div{flex:1}
-.total{display:flex;justify-content:space-between;align-items:center;margin:14px 0 4px;font-size:15px;color:var(--mut)}
-.total b{font-size:26px;color:var(--tx)}
-button{font:inherit;cursor:pointer}
-.primary{width:100%;padding:14px;border:0;border-radius:10px;background:var(--ac);color:#000;font-weight:700;margin-top:8px}
-.ghost{background:none;border:1px solid #333;color:var(--tx);border-radius:10px;padding:10px 14px}
-#cancel{display:none;width:100%;margin-top:8px}
-.stats{display:flex;gap:8px;margin-bottom:12px}
-.stats div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
-.stats b{display:block;font-size:20px}.stats span{font-size:11px;color:var(--mut)}
-.chips{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px}
-.chip{white-space:nowrap;background:none;border:1px solid #333;color:var(--mut);border-radius:20px;padding:7px 14px;font-size:14px}
-.chip.on{background:var(--tx);color:#000;border-color:var(--tx)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
-.top{display:flex;justify-content:space-between;gap:10px}
-.card h3{margin:0 0 2px;font-size:18px}
-.card a{color:var(--ac);text-decoration:none;font-size:14px}
-.amt{text-align:right;font-weight:700;font-size:20px}.amt small{display:block;font-weight:400;color:var(--mut);font-size:12px}
-.dates{display:flex;gap:16px;margin:10px 0;font-size:13px;color:var(--mut)}
-.dates b{color:var(--tx);font-weight:600}.late b{color:#ff6b6b}
-.track{display:flex;gap:6px}
-.step{flex:1;padding:10px 4px;border-radius:10px;border:1px solid #333;background:#000;color:var(--mut);font-size:13px}
-.step.done.s0{background:var(--c0);color:#000;border-color:var(--c0)}
-.step.done.s1{background:var(--c1);color:#000;border-color:var(--c1)}
-.step.done.s2{background:var(--c2);color:#000;border-color:var(--c2)}
-.acts{display:flex;gap:8px;margin-top:10px}
-.acts button,.acts a{flex:1;text-align:center;padding:9px;border:1px solid #333;border-radius:10px;background:none;color:var(--tx);font-size:13px}
-.acts .del{color:#ff6b6b}
-.empty{text-align:center;color:var(--mut);padding:20px}
-.bk{display:flex;gap:8px}.bk button,.bk label{flex:1;margin:0;text-align:center;padding:12px;border:1px solid #333;border-radius:10px;color:var(--tx);font-size:14px;cursor:pointer;background:none}
-#lastbk{font-size:12px;color:var(--mut);margin-top:8px;text-align:center}
+.ck{display:flex!important;align-items:center;gap:8px;color:var(--tx)!important;font-size:15px!important}.ck input{width:20px;height:20px}
+.tot{display:flex;justify-content:space-between;align-items:center;margin-top:12px}.tot b{font-size:24px}
+#m{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9;overflow:auto}#m.on{display:block}
+.sh{background:var(--cd);border:1px solid var(--ln);border-radius:18px;margin:16px 12px;padding:16px;max-width:536px;margin-left:auto;margin-right:auto}
+nav{position:fixed;bottom:0;left:0;right:0;background:#0b0c0e;border-top:1px solid var(--ln);display:flex;justify-content:space-around;padding:6px 0 10px;z-index:5}
+nav button{background:none;border:0;color:var(--mu);font-size:11px;padding:4px 14px}nav button span{display:block;font-size:20px}nav button.on{color:var(--ac)}
+.x{color:var(--rd);background:none;border:0;font-size:18px;padding:0 6px}
 </style></head><body>
-
 <header>
-<svg viewBox="0 0 64 64" aria-label="Wii-Dye logo">
-<g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<path d="M8 12q4-5 8 0q4-5 8 0"/><path d="M26 6q3-4 6 0q3-4 6 0"/><path d="M42 13q3-4 6 0q3-4 6 0"/>
-<path fill="#111" d="M20 22h24l3 36H35l-3-22-3 22H17z"/><rect x="20" y="16" width="24" height="6" fill="#111"/>
-<path d="M32 22v14M24 28h-3M43 28h-3" stroke-width="1.2"/></g></svg>
-<div><h1>Wii-Dye Portal</h1><small>Black jeans re-dye · Durban</small></div>
+<svg class="logo" viewBox="0 0 64 64"><g fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14q4-5 8 0q4-5 8 0"/><path d="M26 8q3-4 6 0q3-4 6 0"/><path d="M42 15q3-4 6 0q3-4 6 0"/><path d="M20 24h24l3 34H35l-3-20-3 20H17z"/><path d="M20 24v-6h24v6"/></g></svg>
+<div><h1>Wii-Dye OS</h1><small>Ops Dashboard</small></div>
 </header>
-
-<div class="panel">
-<label for="name">Customer name</label><input id="name" autocomplete="off">
-<label for="phone">Phone</label><input id="phone" type="tel" inputmode="tel" placeholder="e.g. 082 123 4567">
-<div class="row">
-<div><label for="count">Pairs of jeans</label><input id="count" type="number" min="1" value="1" inputmode="numeric"></div>
-<div><label for="status">Status</label><select id="status"><option>Collected</option><option>Dyed</option><option>Delivered</option></select></div>
-</div>
-<div class="row">
-<div><label for="pickup">Pickup date</label><input id="pickup" type="date"></div>
-<div><label for="delivery">Delivery date</label><input id="delivery" type="date"></div>
-</div>
-<div class="total"><span id="calc">1 × R70</span><b id="tot">R70</b></div>
-<button class="primary" id="save">Add order</button>
-<button class="ghost" id="cancel">Cancel edit</button>
-</div>
-
-<div class="stats" id="stats"></div>
-<div class="chips" id="chips"></div>
-<div id="list"></div>
-
-<div class="panel">
-<div class="bk">
-<button id="exp">⬇ Export backup</button>
-<label>⬆ Import backup<input id="imp" type="file" accept=".json,application/json" hidden></label>
-</div>
-<div id="lastbk"></div>
-</div>
-
+<div id="v"></div>
+<div id="m"></div>
+<nav>
+<button data-a="tab" data-t="home"><span>🏠</span>Home</button>
+<button data-a="tab" data-t="ord"><span>📋</span>Orders</button>
+<button data-a="tab" data-t="cli"><span>👥</span>Clients</button>
+<button data-a="tab" data-t="set"><span>⚙️</span>Settings</button>
+</nav>
 <script>
-const PRICE=70, KEY='wiidye.v1', ST=['Collected','Dyed','Delivered'];
-let orders=[], editing=null, filter='All';
-const $=id=>document.getElementById(id);
+const K='wiidye.os.v1',ST=['Collected','Dyed','Delivered'];
+let D={orders:[],clients:[],expenses:[],set:{target:10000,pj:100,ps:70,next:1}},tab='home',flt='All';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const today=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+const num=v=>Math.max(0,parseInt(v)||0),uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const today=()=>ymd(new Date()),od=o=>o.pickup||ymd(new Date(o.created));
+const R=n=>(n<0?'-':'')+'R'+Math.abs(Math.round(n)).toLocaleString('en-ZA');
 const fmt=d=>d?new Date(d+'T00:00').toLocaleDateString('en-ZA',{day:'numeric',month:'short'}):'—';
+const inv=o=>'INV-'+String(o.inv).padStart(3,'0');
+const wa=p=>{const d=p.replace(/\D/g,'');return d?'https://wa.me/'+(d[0]==='0'?'27'+d.slice(1):d):''};
+const waB=p=>wa(p)?`<a class="wa" href="${wa(p)}" target="_blank" rel="noopener">WhatsApp</a>`:'';
+const ini=n=>n.split(/\s+/).map(x=>x[0]).slice(0,2).join('').toUpperCase();
+const pm=m=>{const[y,o]=m.split('-').map(Number),d=new Date(y,o-2,1);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')};
+const pct=(a,b)=>b>0?Math.round((a-b)/b*100):null;
+const pc=p=>p===null?'':`<i class="${p<0?'dn':'up'}">${p<0?'↓':'↑'}${Math.abs(p)}%</i>`;
+const desc=o=>[o.jeans?o.jeans+' jeans':'',o.shirts?o.shirts+' t-shirt'+(o.shirts>1?'s':''):''].filter(Boolean).join(' · ');
 
-function load(){try{orders=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){orders=[]}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(orders))}catch(e){alert('Could not save on this device. Export a backup now.')}}
+function norm(r){
+  const g=(a,f)=>(Array.isArray(a)?a:[]).filter(Boolean).map(f).filter(Boolean);
+  return{
+    clients:g(r.clients,c=>c.name&&{id:String(c.id||uid()),name:String(c.name),phone:String(c.phone||''),city:String(c.city||''),email:String(c.email||'')}),
+    expenses:g(r.expenses,e=>+e.amount&&{id:String(e.id||uid()),amount:+e.amount,note:String(e.note||''),date:e.date||today()}),
+    orders:g(r.orders,o=>{if(!o.name)return;const j=num(o.jeans!==undefined?o.jeans:o.count),s=num(o.shirts);
+      return{id:String(o.id||uid()),inv:+o.inv||0,name:String(o.name),phone:String(o.phone||''),jeans:j,shirts:s,total:o.total!==undefined?+o.total:j*D.set.pj+s*D.set.ps,pickup:o.pickup||'',due:o.due||o.delivery||'',status:ST.includes(o.status)?o.status:'Collected',paid:!!o.paid,paidOn:o.paidOn||'',created:+o.created||Date.now()}})
+  };
+}
+function ensure(){
+  let n=Math.max(D.set.next||1,...D.orders.map(o=>o.inv+1));
+  D.orders.filter(o=>!o.inv).sort((a,b)=>a.created-b.created).forEach(o=>o.inv=n++);D.set.next=n;
+  D.orders.forEach(o=>{if(!D.clients.some(c=>c.name.toLowerCase()===o.name.toLowerCase()))D.clients.push({id:uid(),name:o.name,phone:o.phone,city:'',email:''})});
+}
+function load(){
+  let r;try{r=JSON.parse(localStorage.getItem(K))}catch(e){}
+  if(!r){let old;try{old=JSON.parse(localStorage.getItem('wiidye.v1'))}catch(e){}r={orders:old||[]}}
+  if(r.set)['target','pj','ps','next'].forEach(k=>{if(+r.set[k]>0)D.set[k]=+r.set[k]});
+  Object.assign(D,norm(r));ensure();
+}
+function save(){try{localStorage.setItem(K,JSON.stringify(D))}catch(e){alert('Could not save on this device. Export a backup now.')}}
 
-function updTotal(){const n=Math.max(0,parseInt($('count').value)||0);$('calc').textContent=n+' × R'+PRICE;$('tot').textContent='R'+n*PRICE}
-function resetForm(){editing=null;$('name').value='';$('phone').value='';$('count').value=1;$('status').value='Collected';$('pickup').value=today();$('delivery').value='';$('save').textContent='Add order';$('cancel').style.display='none';updTotal()}
-
-function card(o){
-  const i=ST.indexOf(o.status);
-  const late=o.delivery&&o.delivery<today()&&o.status!=='Delivered';
-  let wa='';const dg=o.phone.replace(/\D/g,'');
-  if(dg){const n=dg.startsWith('0')?'27'+dg.slice(1):dg;wa=`<a href="https://wa.me/${n}" target="_blank" rel="noopener">WhatsApp</a>`}
-  return `<div class="card"><div class="top"><div><h3>${esc(o.name)}</h3>${o.phone?`<a href="tel:${esc(o.phone)}">${esc(o.phone)}</a>`:''}</div>
-  <div class="amt">R${o.count*PRICE}<small>${o.count} pair${o.count>1?'s':''}</small></div></div>
-  <div class="dates"><span>Pickup <b>${fmt(o.pickup)}</b></span><span class="${late?'late':''}">Delivery <b>${fmt(o.delivery)}${late?' (overdue)':''}</b></span></div>
-  <div class="track">${ST.map((s,k)=>`<button class="step s${k} ${k<=i?'done':''}" data-act="st" data-id="${o.id}" data-s="${s}">${s}</button>`).join('')}</div>
-  <div class="acts"><button data-act="edit" data-id="${o.id}">Edit</button>${wa}<button class="del" data-act="del" data-id="${o.id}">Delete</button></div></div>`;
+function stats(m){
+  const os=D.orders.filter(o=>od(o).slice(0,7)===m),rev=os.reduce((s,o)=>s+o.total,0);
+  const inc=D.orders.filter(o=>o.paid&&(o.paidOn||od(o)).slice(0,7)===m).reduce((s,o)=>s+o.total,0);
+  const exp=D.expenses.filter(e=>e.date.slice(0,7)===m).reduce((s,e)=>s+e.amount,0);
+  return{os,n:os.length,rev,inc,exp,net:inc-exp,avg:os.length?rev/os.length:0};
+}
+function chart(S,m){
+  const[y,mo]=m.split('-').map(Number),dim=new Date(y,mo,0).getDate(),td=today(),last=td.slice(0,7)===m?+td.slice(8):dim;
+  const a=Array(last+1).fill(0);S.os.forEach(o=>{const d=+od(o).slice(8);if(d<=last)a[d]+=o.total});
+  let c=0;const p=a.slice(1).map(v=>c+=v),mx=Math.max(1,c),n=Math.max(1,p.length-1);
+  const xy=p.map((v,i)=>(i/n*300).toFixed(1)+','+(68-v/mx*60).toFixed(1)).join(' ');
+  return`<svg class="ch" viewBox="0 0 300 72" preserveAspectRatio="none"><polygon fill="rgba(198,244,50,.18)" points="0,72 ${xy} 300,72"/><polyline fill="none" stroke="#c6f432" stroke-width="2" points="${xy}"/></svg>`;
 }
 
-function render(){
-  const jeans=orders.reduce((s,o)=>s+o.count,0);
-  $('stats').innerHTML=`<div><b>${orders.length}</b><span>Orders</span></div><div><b>${jeans}</b><span>Pairs</span></div><div><b>R${jeans*PRICE}</b><span>Order value</span></div>`;
-  $('chips').innerHTML=['All',...ST].map(s=>{const n=s==='All'?orders.length:orders.filter(o=>o.status===s).length;return `<button class="chip ${filter===s?'on':''}" data-f="${s}">${s} ${n}</button>`}).join('');
-  const list=[...orders].sort((a,b)=>b.created-a.created).filter(o=>filter==='All'||o.status===filter);
-  $('list').innerHTML=list.length?list.map(card).join(''):'<p class="empty">No orders here yet.</p>';
-  const lb=localStorage.getItem(KEY+'.bk');
-  $('lastbk').textContent=lb?'Last backup: '+new Date(+lb).toLocaleString('en-ZA'):'No backup yet – export one regularly.';
+function viewHome(){
+  const m=today().slice(0,7),S=stats(m),P=stats(pm(m)),t=D.set.target;
+  const mn=new Date().toLocaleDateString('en-GB',{month:'short',year:'numeric'});
+  const tile=(l,v,p)=>`<div><small>${l}</small><b>${v}</b>${pc(p)}</div>`;
+  const cl=D.clients.slice(-3).reverse();
+  const now=new Date(),mon=new Date(now);mon.setDate(now.getDate()-(now.getDay()+6)%7);
+  let wk='';for(let i=0;i<7;i++){const d=new Date(mon);d.setDate(mon.getDate()+i);const k=ymd(d),dot=D.orders.some(o=>o.due===k&&o.status!=='Delivered');
+    wk+=`<div class="${k===today()?'t':''}"><small>${['Mo','Tu','We','Th','Fr','Sa','Su'][i]}</small><b>${d.getDate()}</b><u>${dot?'●':''}</u></div>`}
+  const up=D.orders.filter(o=>o.status!=='Delivered'||!o.paid).sort((a,b)=>(a.due||'9999').localeCompare(b.due||'9999')).slice(0,4);
+  const tot=S.inc+S.exp,ip=tot?Math.round(S.inc/tot*100):0;
+  const ex=D.expenses.filter(e=>e.date.slice(0,7)===m).sort((a,b)=>b.date.localeCompare(a.date));
+  const df=S.net-P.net;
+  return`<div class="card"><div class="hd"><h2>Ops Dashboard</h2><span class="tag">${mn}</span></div>
+  <small>${R(t)} Monthly Target</small>
+  <div class="bar" style="margin-top:8px"><i style="width:${Math.min(100,S.rev/t*100)}%"></i></div>
+  <div class="tg"><span>${Math.round(S.rev/t*100)}%</span><span>${R(S.rev)} / ${R(t)}</span></div>
+  ${chart(S,m)}
+  <div class="tiles">${tile('Orders',S.n,pct(S.n,P.n))}${tile('Revenue',R(S.rev),pct(S.rev,P.rev))}${tile('Avg Ticket',R(S.avg),pct(S.avg,P.avg))}</div></div>
+
+  <div class="card"><div class="hd"><h2>Client CRM List</h2><button class="tag" data-a="newc">+</button></div>
+  ${cl.length?cl.map(c=>`<div class="rw"><div class="av">${esc(ini(c.name))}</div><div><b>${esc(c.name)}</b><br><small>${esc([c.phone,c.city].filter(Boolean).join(' • '))}</small></div>${waB(c.phone)}</div>`).join(''):'<p class="mu">No clients yet.</p>'}
+  ${D.clients.length>3?'<button class="gh" data-a="tab" data-t="cli">View all clients</button>':''}</div>
+
+  <div class="card"><div class="hd"><h2>📅 Booking Calendar</h2><button class="tag" data-a="tab" data-t="ord">All orders</button></div>
+  <div class="wk">${wk}</div>
+  ${up.length?up.map(o=>`<div class="rw"><div><b>${inv(o)} • ${esc(o.name)}</b><br><small>${o.due?'Due '+fmt(o.due):'No due date'} • ${R(o.total)}</small></div><button class="pill ${o.paid?'pd':''}" data-a="pay" data-id="${o.id}">${o.paid?'Paid':'Unpaid'}</button></div>`).join(''):'<p class="mu">Nothing due. Add an invoice below.</p>'}
+  <button class="pri" data-a="new">+ Create Invoice</button></div>
+
+  <div class="card"><div class="hd"><h2>Money Tracker</h2><span class="tag">This Month</span></div>
+  <div class="two"><div><small>Income</small><br><b>${R(S.inc)}</b>${pc(pct(S.inc,P.inc))}</div><div><small>Expenses</small><br><b>${R(S.exp)}</b>${pc(pct(S.exp,P.exp))}</div></div>
+  <div class="lb"><span>Income ${ip}%</span><span>Expenses ${tot?100-ip:0}%</span></div>
+  <div class="bar"><i style="width:${ip}%"></i></div>
+  <p style="margin:12px 0 0"><b>Net: ${R(S.net)}</b><br><small>${df>=0?'↑':'↓'} ${R(Math.abs(df))} vs last month</small></p>
+  ${ex.map(e=>`<div class="rw"><div><b>${R(e.amount)}</b> <small>${esc(e.note)} • ${fmt(e.date)}</small></div><button class="x" data-a="delx" data-id="${e.id}">×</button></div>`).join('')}
+  <button class="gh" data-a="newx">+ Add expense</button></div>`;
 }
 
-$('count').oninput=updTotal;
-$('save').onclick=()=>{
-  const name=$('name').value.trim(), count=parseInt($('count').value)||0;
-  if(!name){alert('Enter the customer name.');return}
-  if(count<1){alert('Jeans count must be at least 1.');return}
-  const data={name,phone:$('phone').value.trim(),count,status:$('status').value,pickup:$('pickup').value,delivery:$('delivery').value};
-  if(editing){const o=orders.find(x=>x.id===editing);if(o)Object.assign(o,data)}
-  else orders.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),created:Date.now(),...data});
-  save();resetForm();render();
-};
-$('cancel').onclick=resetForm;
+function oc(o){
+  const i=ST.indexOf(o.status),late=o.due&&o.due<today()&&o.status!=='Delivered';
+  return`<div class="card"><div class="top"><div><small>${inv(o)}</small><h2>${esc(o.name)}</h2>${o.phone?`<a style="color:var(--ac);text-decoration:none" href="tel:${esc(o.phone)}">${esc(o.phone)}</a>`:''}</div>
+  <div class="amt">${R(o.total)}<small>${desc(o)}</small><button class="pill ${o.paid?'pd':''}" style="margin-top:6px" data-a="pay" data-id="${o.id}">${o.paid?'Paid':'Unpaid'}</button></div></div>
+  <div class="dt"><span>Pickup <b>${fmt(o.pickup)}</b></span><span class="${late?'late':''}">Due <b>${fmt(o.due)}${late?' (overdue)':''}</b></span></div>
+  <div class="trk">${ST.map((s,k)=>`<button class="stp ${k<=i?'d':''}" data-a="st" data-id="${o.id}" data-s="${s}">${s}</button>`).join('')}</div>
+  <div class="ac"><button data-a="edit" data-id="${o.id}">Edit</button>${wa(o.phone)?`<a href="${wa(o.phone)}" target="_blank" rel="noopener">WhatsApp</a>`:''}<button style="color:var(--rd)" data-a="del" data-id="${o.id}">Delete</button></div></div>`;
+}
+function viewOrd(){
+  const l=D.orders.filter(o=>flt==='All'||o.status===flt).sort((a,b)=>b.created-a.created);
+  return`<button class="pri" style="margin:0 0 12px" data-a="new">+ Create Invoice</button>
+  <div class="chips">${['All',...ST].map(s=>`<button class="chip ${flt===s?'on':''}" data-a="flt" data-f="${s}">${s} ${s==='All'?D.orders.length:D.orders.filter(o=>o.status===s).length}</button>`).join('')}</div>
+  ${l.length?l.map(oc).join(''):'<p class="mu c">No orders here yet.</p>'}`;
+}
+function viewCli(){
+  return`<button class="pri" style="margin:0 0 12px" data-a="newc">+ Add client</button>
+  <div class="card">${D.clients.length?[...D.clients].sort((a,b)=>a.name.localeCompare(b.name)).map(c=>{
+    const os=D.orders.filter(o=>o.name.toLowerCase()===c.name.toLowerCase());
+    return`<div class="rw"><div class="av">${esc(ini(c.name))}</div><div><b>${esc(c.name)}</b><br><small>${esc([c.phone,c.city,c.email].filter(Boolean).join(' • '))}</small><br><small>${os.length} order${os.length==1?'':'s'} • ${R(os.reduce((s,o)=>s+o.total,0))}</small></div>
+    <div style="display:flex;flex-direction:column;gap:6px">${waB(c.phone)}<button class="wa" data-a="editc" data-id="${c.id}">Edit</button></div></div>`}).join(''):'<p class="mu">No clients yet.</p>'}</div>`;
+}
+function viewSet(){
+  const lb=localStorage.getItem(K+'.bk');
+  return`<div class="card"><h2>Targets &amp; prices</h2>
+  <label>Monthly target (R)</label><input id="st" type="number" value="${D.set.target}">
+  <div class="row"><div><label>Jeans price (R)</label><input id="sj" type="number" value="${D.set.pj}"></div><div><label>T-shirt price (R)</label><input id="ss" type="number" value="${D.set.ps}"></div></div>
+  <small>Price changes only affect new invoices.</small>
+  <button class="pri" data-a="sets">Save settings</button></div>
+  <div class="card"><h2>Backup</h2><small>Your data lives on this phone. Export a backup regularly.</small>
+  <div class="row" style="margin-top:10px"><div><button class="gh" style="margin:0" data-a="exp">⬇ Export</button></div><div><label class="gh c" style="margin:0;color:var(--tx);cursor:pointer">⬆ Import<input id="imp" type="file" accept=".json,application/json" hidden></label></div></div>
+  <p class="mu c" style="font-size:12px">${lb?'Last backup: '+new Date(+lb).toLocaleString('en-ZA'):'No backup yet.'}</p></div>`;
+}
+function render(){$('#v').innerHTML={home:viewHome,ord:viewOrd,cli:viewCli,set:viewSet}[tab]();$$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===tab))}
 
-$('chips').onclick=e=>{const f=e.target.dataset.f;if(f){filter=f;render()}};
-$('list').onclick=e=>{
-  const b=e.target.closest('button');if(!b||!b.dataset.act)return;
-  const o=orders.find(x=>x.id===b.dataset.id);if(!o)return;
-  if(b.dataset.act==='st'){o.status=b.dataset.s;save();render()}
-  if(b.dataset.act==='del'&&confirm('Delete order for '+o.name+'?')){orders=orders.filter(x=>x!==o);save();render()}
-  if(b.dataset.act==='edit'){editing=o.id;$('name').value=o.name;$('phone').value=o.phone;$('count').value=o.count;$('status').value=o.status;$('pickup').value=o.pickup;$('delivery').value=o.delivery;$('save').textContent='Save changes';$('cancel').style.display='block';updTotal();scrollTo({top:0,behavior:'smooth'})}
-};
-
-$('exp').onclick=()=>{
-  const blob=new Blob([JSON.stringify({app:'Wii-Dye Portal',version:1,exported:new Date().toISOString(),orders},null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='wii-dye-backup-'+today()+'.json';
-  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
-  try{localStorage.setItem(KEY+'.bk',Date.now())}catch(e){}render();
-};
-$('imp').onchange=e=>{
-  const f=e.target.files[0];if(!f)return;const r=new FileReader();
+function sheet(h){$('#m').innerHTML='<div class="sh">'+h+'</div>';$('#m').className='on'}
+function closeM(){$('#m').className='';$('#m').innerHTML=''}
+function ordForm(o){
+  o=o||{};const j=o.jeans===undefined?1:o.jeans,s=o.shirts||0;
+  sheet(`<h2>${o.id?'Edit '+inv(o):'New invoice'}</h2>
+  <label>Customer</label><input id="fn" list="cl" value="${esc(o.name||'')}" autocomplete="off"><datalist id="cl">${D.clients.map(c=>`<option value="${esc(c.name)}">`).join('')}</datalist>
+  <label>Phone</label><input id="fp" type="tel" value="${esc(o.phone||'')}">
+  <div class="row"><div><label>Jeans (R${D.set.pj})</label><input id="fj" type="number" min="0" value="${j}"></div><div><label>T-shirts (R${D.set.ps})</label><input id="fs" type="number" min="0" value="${s}"></div></div>
+  <div class="row"><div><label>Pickup</label><input id="fk" type="date" value="${o.pickup||today()}"></div><div><label>Due / delivery</label><input id="fd" type="date" value="${o.due||''}"></div></div>
+  <label>Status</label><select id="fst">${ST.map(x=>`<option ${x===(o.status||'Collected')?'selected':''}>${x}</option>`).join('')}</select>
+  <label class="ck"><input id="fpd" type="checkbox" ${o.paid?'checked':''}> Paid</label>
+  <div class="tot"><span class="mu" id="fc"></span><b id="ft"></b></div>
+  <button class="pri" id="fsv">Save</button><button class="gh" data-a="x">Cancel</button>`);
+  const tt=()=>{const a=num($('#fj').value),b=num($('#fs').value);return o.id&&a===o.jeans&&b===o.shirts?o.total:a*D.set.pj+b*D.set.ps};
+  const calc=()=>{$('#fc').textContent=num($('#fj').value)+' jeans + '+num($('#fs').value)+' t-shirts';$('#ft').textContent=R(tt())};
+  $('#fj').oninput=calc;$('#fs').oninput=calc;calc();
+  $('#fn').oninput=()=>{const c=D.clients.find(c=>c.name.toLowerCase()===$('#fn').value.trim().toLowerCase());if(c&&!$('#fp').value)$('#fp').value=c.phone};
+  $('#fsv').onclick=()=>{
+    const name=$('#fn').value.trim(),a=num($('#fj').value),b=num($('#fs').value);
+    if(!name)return alert('Enter the customer name.');
+    if(a+b<1)return alert('Add at least 1 jeans or t-shirt.');
+    const paid=$('#fpd').checked,d={name,phone:$('#fp').value.trim(),jeans:a,shirts:b,total:tt(),pickup:$('#fk').value,due:$('#fd').value,status:$('#fst').value,paid};
+    if(o.id){const x=D.orders.find(z=>z.id===o.id);d.paidOn=paid?(x.paidOn||today()):'';Object.assign(x,d)}
+    else D.orders.push({id:uid(),inv:D.set.next++,created:Date.now(),paidOn:paid?today():'',...d});
+    const c=D.clients.find(c=>c.name.toLowerCase()===name.toLowerCase());if(c&&!c.phone&&d.phone)c.phone=d.phone;
+    ensure();save();closeM();render();
+  };
+}
+function cliForm(c){
+  c=c||{};
+  sheet(`<h2>${c.id?'Edit client':'New client'}</h2>
+  <label>Name</label><input id="cn" value="${esc(c.name||'')}"><label>Phone</label><input id="cp" type="tel" value="${esc(c.phone||'')}">
+  <label>City</label><input id="cc" value="${esc(c.city||'')}"><label>Email</label><input id="ce" type="email" value="${esc(c.email||'')}">
+  <button class="pri" id="csv">Save</button>${c.id?'<button class="gh" style="color:var(--rd)" id="cdl">Delete client</button>':''}<button class="gh" data-a="x">Cancel</button>`);
+  $('#csv').onclick=()=>{const n=$('#cn').value.trim();if(!n)return alert('Enter a name.');
+    const d={name:n,phone:$('#cp').value.trim(),city:$('#cc').value.trim(),email:$('#ce').value.trim()};
+    if(c.id){const x=D.clients.find(z=>z.id===c.id);D.orders.forEach(o=>{if(o.name.toLowerCase()===x.name.toLowerCase())o.name=n});Object.assign(x,d)}else D.clients.push({id:uid(),...d});
+    save();closeM();render()};
+  if(c.id)$('#cdl').onclick=()=>{if(confirm('Delete this client? Their orders stay.')){D.clients=D.clients.filter(z=>z.id!==c.id);save();closeM();render()}};
+}
+function expForm(){
+  sheet(`<h2>Add expense</h2><label>Amount (R)</label><input id="ea" type="number" inputmode="decimal"><label>What for</label><input id="en" placeholder="e.g. dye, gas, transport"><label>Date</label><input id="ed" type="date" value="${today()}">
+  <button class="pri" id="esv">Save</button><button class="gh" data-a="x">Cancel</button>`);
+  $('#esv').onclick=()=>{const a=parseFloat($('#ea').value);if(!(a>0))return alert('Enter the amount.');
+    D.expenses.push({id:uid(),amount:a,note:$('#en').value.trim(),date:$('#ed').value||today()});save();closeM();render()};
+}
+function doExport(){
+  const b=new Blob([JSON.stringify({app:'Wii-Dye OS',version:3,exported:new Date().toISOString(),...D},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='wii-dye-backup-'+today()+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+  try{localStorage.setItem(K+'.bk',Date.now())}catch(e){}render();
+}
+function doImport(inp){
+  const f=inp.files[0];if(!f)return;const r=new FileReader();
   r.onload=()=>{try{
-    const d=JSON.parse(r.result),arr=Array.isArray(d)?d:d.orders;if(!Array.isArray(arr))throw 0;
-    const clean=arr.filter(o=>o&&o.id&&o.name).map(o=>({id:String(o.id),name:String(o.name),phone:String(o.phone||''),count:Math.max(1,parseInt(o.count)||1),pickup:o.pickup||'',delivery:o.delivery||'',status:ST.includes(o.status)?o.status:'Collected',created:+o.created||Date.now()}));
-    if(!clean.length){alert('No orders found in that file.');return}
-    if(!confirm('Import '+clean.length+' orders and merge with current data?'))return;
-    const map=new Map(orders.map(o=>[o.id,o]));clean.forEach(o=>map.set(o.id,o));
-    orders=[...map.values()];save();render();alert('Import complete.');
-  }catch(x){alert('That file is not a valid Wii-Dye backup.')}e.target.value=''};
+    const d=JSON.parse(r.result),x=norm(Array.isArray(d)?{orders:d}:d);
+    if(!x.orders.length&&!x.clients.length&&!x.expenses.length){alert('Nothing found in that file.');return}
+    if(!confirm('Import '+x.orders.length+' orders, '+x.clients.length+' clients, '+x.expenses.length+' expenses and merge with current data?'))return;
+    ['orders','clients','expenses'].forEach(k=>{const m=new Map(D[k].map(i=>[i.id,i]));x[k].forEach(i=>m.set(i.id,i));D[k]=[...m.values()]});
+    ensure();save();render();alert('Import complete.');
+  }catch(e){alert('That file is not a valid Wii-Dye backup.')}inp.value=''};
   r.readAsText(f);
-};
+}
+document.addEventListener('change',e=>{if(e.target.id==='imp')doImport(e.target)});
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-a]');if(!b)return;
+  const a=b.dataset.a,id=b.dataset.id,o=D.orders.find(x=>x.id===id);
+  if(a==='tab'){tab=b.dataset.t;render();scrollTo(0,0)}
+  else if(a==='flt'){flt=b.dataset.f;render()}
+  else if(a==='pay'&&o){o.paid=!o.paid;o.paidOn=o.paid?today():'';save();render()}
+  else if(a==='st'&&o){o.status=b.dataset.s;save();render()}
+  else if(a==='del'&&o){if(confirm('Delete '+inv(o)+' for '+o.name+'?')){D.orders=D.orders.filter(x=>x!==o);save();render()}}
+  else if(a==='edit'&&o)ordForm(o);
+  else if(a==='new')ordForm();
+  else if(a==='newc')cliForm();
+  else if(a==='editc')cliForm(D.clients.find(c=>c.id===id));
+  else if(a==='newx')expForm();
+  else if(a==='delx'){D.expenses=D.expenses.filter(x=>x.id!==id);save();render()}
+  else if(a==='x')closeM();
+  else if(a==='exp')doExport();
+  else if(a==='sets'){const t=num($('#st').value),j=num($('#sj').value),s=num($('#ss').value);if(!t||!j||!s)return alert('Enter all three values.');D.set.target=t;D.set.pj=j;D.set.ps=s;save();alert('Saved.');render()}
+});
 
 // Installability: manifest built at runtime (icons drawn on canvas)
 (function(){
   if(!/^https?:$/.test(location.protocol))return;
   try{
     const icon=sz=>{const c=document.createElement('canvas');c.width=c.height=sz;const x=c.getContext('2d');
-      x.fillStyle='#000';x.fillRect(0,0,sz,sz);x.scale(sz/64,sz/64);
-      x.strokeStyle='#fff';x.fillStyle='#111';x.lineWidth=2;x.lineCap=x.lineJoin='round';
-      x.beginPath();x.moveTo(20,22);x.lineTo(44,22);x.lineTo(47,58);x.lineTo(35,58);x.lineTo(32,36);x.lineTo(29,58);x.lineTo(17,58);x.closePath();x.fill();x.stroke();
-      x.fillRect(20,16,24,6);x.strokeRect(20,16,24,6);
-      [[8,12],[26,6],[42,13]].forEach(([a,b])=>{x.beginPath();x.moveTo(a,b);x.quadraticCurveTo(a+4,b-5,a+8,b);x.quadraticCurveTo(a+12,b-5,a+16,b);x.stroke()});
+      x.fillStyle='#c6f432';x.fillRect(0,0,sz,sz);x.scale(sz/64,sz/64);
+      x.strokeStyle='#000';x.lineWidth=3;x.lineCap=x.lineJoin='round';
+      x.beginPath();x.moveTo(20,24);x.lineTo(44,24);x.lineTo(47,58);x.lineTo(35,58);x.lineTo(32,38);x.lineTo(29,58);x.lineTo(17,58);x.closePath();x.stroke();
+      x.strokeRect(20,18,24,6);
+      [[8,14],[26,8],[42,15]].forEach(([a,b])=>{x.beginPath();x.moveTo(a,b);x.quadraticCurveTo(a+4,b-5,a+8,b);x.quadraticCurveTo(a+12,b-5,a+16,b);x.stroke()});
       return c.toDataURL('image/png')};
-    const m={name:'Wii-Dye Portal',short_name:'Wii-Dye',start_url:location.href.split('#')[0],scope:new URL('./',location.href).href,display:'standalone',background_color:'#000000',theme_color:'#000000',
+    const m={name:'Wii-Dye OS',short_name:'Wii-Dye',start_url:location.href.split('#')[0],scope:new URL('./',location.href).href,display:'standalone',background_color:'#000000',theme_color:'#000000',
       icons:[{src:icon(192),sizes:'192x192',type:'image/png',purpose:'any'},{src:icon(512),sizes:'512x512',type:'image/png',purpose:'any'}]};
     const l=document.createElement('link');l.rel='manifest';
-    l.href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/manifest+json'}));
-    document.head.appendChild(l);
+    l.href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/manifest+json'}));document.head.appendChild(l);
   }catch(e){}
   if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
   if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
 })();
 
-load();resetForm();render();
+load();render();
 </script>
 </body></html>
